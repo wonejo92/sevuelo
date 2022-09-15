@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Request } from '../request.model';
 import { RequestService } from '../request.service';
 
@@ -10,7 +10,10 @@ import { RequestService } from '../request.service';
 export class RequestsComponent implements OnInit {
 
   requests: Request[];
+
+  @Input() request: Request;
   selectedRequest: Request;
+  mensaje ='No existen datos';
 
   constructor(private requestService: RequestService) { }
 
@@ -23,4 +26,18 @@ export class RequestsComponent implements OnInit {
       .subscribe(requests => this.requests = requests);
   }
 
+  previousState(): void {
+    window.history.back();
+  }
+
+  delete() {
+    this.requestService.delete(this.request)
+      .subscribe((newRequest) => {
+          this.request = newRequest
+          this.previousState();
+        }
+      );
+  }
 }
+
+

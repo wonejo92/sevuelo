@@ -23,13 +23,30 @@
                   {{request.status}}
               </span>
             </label>
+        </div>        <div>
+            <label>Comment:
+              <span>
+                  {{request.comment}}
+              </span>
+            </label>
         </div>
+
+
         <button type="submit"
             (click)="previousState()"
             class="btn btn-info">
           <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
         </button>
+      <div *ngIf="request.status=='NEW'">
         <button (click)="reserve()" class="btn btn-success">Reserve</button>
+      </div>
+
+
+      <div *ngIf="request.status=='RESERVED'">
+        <button (click)="dont_reserve()" class="btn btn-warning"  >Dont Reserve</button>
+      </div>
+
+
     </div>
   </div>
 </div>

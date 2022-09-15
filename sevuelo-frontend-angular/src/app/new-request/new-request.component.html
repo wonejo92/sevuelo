@@ -28,6 +28,18 @@
                         Destination is required
                     </div>
                 </div>
+
+              <div class="form-group">
+                <label class="form-control-label" for="destination">Comment:</label>
+                <input [(ngModel)]="request.comment" type="text" class="form-control"
+                       placeholder="Comment" name="Comment" id="Comment"
+                       #comment="ngModel">
+                <div [hidden]="destination.valid || destination.pristine" class="alert alert-danger">
+                </div>
+              </div>
+
+
+
                 <button type="button"
                     (click)="previousState()"
                     class="btn btn-info">
@@ -40,7 +52,7 @@
                 </button>
 
             </div>
-            
+
         </form>
     </div>
 </div>

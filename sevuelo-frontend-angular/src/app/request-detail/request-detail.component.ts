@@ -39,5 +39,12 @@ export class RequestDetailComponent implements OnInit {
       }
     );
   }
-
+  dont_reserve() {
+    this.requestService.dont_reserveRequest(this.request)
+      .subscribe((newRequest) => {
+          this.request = newRequest
+          this.previousState();
+        }
+      );
+  }
 }

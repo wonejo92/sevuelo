@@ -4,6 +4,6 @@ export class Request {
         passenger?: string,
         destination?: string,
         status?: string,
+        comment?: string,
     ){}
-    
 }

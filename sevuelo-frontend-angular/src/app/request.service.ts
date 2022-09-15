@@ -23,13 +23,21 @@ export class RequestService {
     // return of(REQUESTS);
     return this.http.get<Request[]>(`${this.url}/requests`);
   }
-  
+
   getRequest(id: number): Observable<Request> {
     return this.http.get<Request>(`${this.url}/requests/${id}`);
   }
 
   reserveRequest(request: Request): Observable<any> {
     return this.http.put(`${this.url}/reserve`, request, this.httpOptions);
+  }
+
+  dont_reserveRequest(request: Request): Observable<any> {
+    return this.http.put(`${this.url}/dont_reserve`, request, this.httpOptions);
+  }
+
+  delete(request: Request): Observable<any> {
+    return this.http.post(`${this.url}/delete`, request, this.httpOptions);
   }
 
   addRequest(request: Request): Observable<Request> {

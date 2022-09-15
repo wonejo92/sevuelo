@@ -5,8 +5,11 @@ import ec.sevolutivo.sevuelos.sevuelos.domain.enumeration.RequestStatus;
 import ec.sevolutivo.sevuelos.sevuelos.repository.RequestRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Id;
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +55,20 @@ public class RequestResource {
         request.setStatus(RequestStatus.RESERVED);
         requestRepository.save(request);
     }
+
+
+    @PutMapping("/dont_reserve")
+    public void dont_reserve(@RequestBody Request request) {
+        log.debug("REST request to reserve a flight");
+        request.setStatus(RequestStatus.NEW);
+        requestRepository.save(request);
+    }
+
+    @PostMapping("delete")
+    public void delete(@RequestBody Request request){
+        requestRepository.delete(request);
+    }
+
 
 
 }
